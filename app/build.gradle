@@ -60,6 +60,9 @@ dependencies {
     implementation libraries.dagger_android_support
     kapt libraries.dagger_android_processer
 
+    implementation libraries.recyclerview
+    implementation libraries.cardview
+
     testImplementation testLibraries.junit
     androidTestImplementation testLibraries.ext_junit
     androidTestImplementation testLibraries.espresso_core
