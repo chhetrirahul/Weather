@@ -18,5 +18,8 @@ class MainActivity : DaggerAppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         mainViewModel = ViewModelProvider(this, viewModelProvider).get(MainViewModel::class.java)
+
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.title = getString(R.string.app_name)
     }
 }
