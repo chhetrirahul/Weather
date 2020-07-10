@@ -55,6 +55,7 @@ dependencies {
     implementation libraries.dagger
     kapt libraries.dagger_compiler
     implementation libraries.dagger_android
+    implementation libraries.dagger_android_support
     kapt libraries.dagger_android_processer
 
     testImplementation testLibraries.junit
