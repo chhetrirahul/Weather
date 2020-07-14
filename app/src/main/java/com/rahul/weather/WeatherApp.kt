@@ -13,7 +13,7 @@ class WeatherApp : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        appContext = WeatherApp()
+        WeatherApp.appContext = this
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
