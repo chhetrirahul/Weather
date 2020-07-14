@@ -21,5 +21,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.title = getString(R.string.app_name)
+
+        mainViewModel.onActivityCreated(savedInstanceState)
     }
 }

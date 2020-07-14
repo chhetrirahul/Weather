@@ -2,6 +2,7 @@ package com.rahul.weather.di
 
 import com.rahul.weather.WeatherApp
 import com.rahul.weather.network.di.NetworkModule
+import com.rahul.weather.network.di.OpenWeatherApiModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -14,7 +15,8 @@ import javax.inject.Singleton
         AndroidInjectionModule::class,
         ActivityBuildersModule::class,
         ViewModelProviderFactory::class,
-        NetworkModule::class
+        NetworkModule::class,
+        OpenWeatherApiModule::class
     ]
 )
 interface AppComponent : AndroidInjector<WeatherApp> {
