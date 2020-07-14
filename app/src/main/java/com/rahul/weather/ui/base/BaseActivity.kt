@@ -21,6 +21,7 @@ abstract class BaseActivity<T : ViewDataBinding> : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, getLayoutId())
+        mBinding.lifecycleOwner = this
     }
 
     fun setToolbar(title: String) {
