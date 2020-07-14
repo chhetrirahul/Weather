@@ -3,9 +3,12 @@ package com.rahul.weather.ui.base
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import com.rahul.weather.R
 import com.rahul.weather.ui.main.MainActivity
 import dagger.android.support.DaggerAppCompatActivity
+import kotlinx.android.synthetic.main.toolbar.*
 
 abstract class BaseActivity : DaggerAppCompatActivity() {
 
@@ -13,13 +16,15 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
 
     private var mBackPressed: Long = 0
 
+    lateinit var mBinding: ViewDataBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutId())
+        mBinding = DataBindingUtil.setContentView(this, getLayoutId())
     }
 
     fun setToolbar(title: String) {
-        setSupportActionBar(findViewById(R.id.toolbar))
+        setSupportActionBar(toolbar)
         if (this !is MainActivity)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = title
