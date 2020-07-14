@@ -75,6 +75,9 @@ dependencies {
     implementation libraries.recyclerview
     implementation libraries.cardview
 
+    implementation libraries.room
+    kapt libraries.room_compiler
+
     testImplementation testLibraries.junit
     androidTestImplementation testLibraries.ext_junit
     androidTestImplementation testLibraries.espresso_core

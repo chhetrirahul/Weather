@@ -33,6 +33,7 @@ ext {
     rx_version = "3.0.0"
     recyclerview_version = "1.1.0"
     cardview_version = "1.0.0"
+    room_version = "2.2.5"
 
     libraries = [
             kotlin_stdlib           : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
@@ -58,7 +59,10 @@ ext {
             dagger_android_processer: "com.google.dagger:dagger-android-processor:$dagger_version",
 
             recyclerview            : "androidx.recyclerview:recyclerview:$recyclerview_version",
-            cardview                : "androidx.cardview:cardview:$cardview_version"
+            cardview                : "androidx.cardview:cardview:$cardview_version",
+
+            room                    : "androidx.room:room-runtime:$room_version",
+            room_compiler           : "androidx.room:room-compiler:$room_version"
     ]
 
     junit_version = "4.12"
