@@ -1,6 +1,7 @@
 package com.rahul.weather.network.di
 
 import com.rahul.weather.BuildConfig
+import com.rahul.weather.network.interceptor.RequestInterceptor
 import dagger.Module
 import dagger.Provides
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
@@ -20,6 +21,7 @@ class NetworkModule {
         loggingInterceptor.level =
             if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
         return OkHttpClient.Builder()
+            .addNetworkInterceptor(RequestInterceptor())
             .addInterceptor(loggingInterceptor)
             .build()
     }
