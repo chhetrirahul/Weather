@@ -3,10 +3,11 @@ package com.rahul.weather.ui.city.add
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.rahul.weather.R
+import com.rahul.weather.databinding.ActivityAddCityBinding
 import com.rahul.weather.ui.base.BaseActivity
 import javax.inject.Inject
 
-class AddCityActivity : BaseActivity() {
+class AddCityActivity : BaseActivity<ActivityAddCityBinding>() {
 
     @Inject
     lateinit var viewModelProvider: ViewModelProvider.Factory

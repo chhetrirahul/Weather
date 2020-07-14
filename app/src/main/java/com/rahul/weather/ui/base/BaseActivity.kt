@@ -10,13 +10,13 @@ import com.rahul.weather.ui.main.MainActivity
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.toolbar.*
 
-abstract class BaseActivity : DaggerAppCompatActivity() {
+abstract class BaseActivity<T : ViewDataBinding> : DaggerAppCompatActivity() {
 
     abstract fun getLayoutId(): Int
 
     private var mBackPressed: Long = 0
 
-    lateinit var mBinding: ViewDataBinding
+    lateinit var mBinding: T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

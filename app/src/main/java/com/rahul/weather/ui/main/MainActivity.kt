@@ -7,11 +7,12 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import com.rahul.weather.R
+import com.rahul.weather.databinding.ActivityMainBinding
 import com.rahul.weather.ui.base.BaseActivity
 import com.rahul.weather.ui.city.add.AddCityActivity
 import javax.inject.Inject
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     @Inject
     lateinit var viewModelProvider: ViewModelProvider.Factory
