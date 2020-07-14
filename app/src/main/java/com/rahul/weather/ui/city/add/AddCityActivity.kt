@@ -1,10 +1,17 @@
 package com.rahul.weather.ui.city.add
 
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import com.rahul.weather.R
 import com.rahul.weather.ui.base.BaseActivity
+import javax.inject.Inject
 
 class AddCityActivity : BaseActivity() {
+
+    @Inject
+    lateinit var viewModelProvider: ViewModelProvider.Factory
+
+    lateinit var addCityViewModel: AddCityViewModel
 
     override fun getLayoutId(): Int {
         return R.layout.activity_add_city
@@ -12,6 +19,9 @@ class AddCityActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        addCityViewModel =
+            ViewModelProvider(this, viewModelProvider).get(AddCityViewModel::class.java)
+        addCityViewModel.onActivityCreated(savedInstanceState)
         setToolbar(getString(R.string.txt_add_new_city))
     }
 }

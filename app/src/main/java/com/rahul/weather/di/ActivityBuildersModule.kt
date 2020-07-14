@@ -1,6 +1,7 @@
 package com.rahul.weather.di
 
 import com.rahul.weather.ui.city.add.AddCityActivity
+import com.rahul.weather.ui.city.add.di.AddCityViewModelModule
 import com.rahul.weather.ui.main.MainActivity
 import com.rahul.weather.ui.main.di.MainViewModelModule
 import dagger.Module
@@ -14,6 +15,8 @@ abstract class ActivityBuildersModule {
     )
     abstract fun providesMainActivity(): MainActivity
 
-    @ContributesAndroidInjector()
+    @ContributesAndroidInjector(
+        modules = [AddCityViewModelModule::class]
+    )
     abstract fun providesAddCityActivity(): AddCityActivity
 }
