@@ -1,37 +1,30 @@
 package com.rahul.weather.ui.main
 
 import android.os.Bundle
-import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
 import com.rahul.weather.network.api.OpenWeatherApiService
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.schedulers.Schedulers
+import com.rahul.weather.network.data.ErrorResponse
+import com.rahul.weather.network.data.WeatherResponse
+import com.rahul.weather.network.helper.ApiResponseHelper
+import com.rahul.weather.ui.base.BaseViewModel
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(private val openWeatherApiService: OpenWeatherApiService) :
-    ViewModel() {
+    BaseViewModel() {
 
-    var compositeDisposable: CompositeDisposable? = null
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
 
-    fun onActivityCreated(savedInstanceState: Bundle?) {
+        executeRequest(
+            openWeatherApiService.getWeatherForCity("sydney"),
+            object : ApiResponseHelper<WeatherResponse> {
+                override fun onSuccess(data: WeatherResponse) {
+                    println(Gson().toJson(data))
+                }
 
-        compositeDisposable = CompositeDisposable()
-
-        compositeDisposable!!.add(
-            openWeatherApiService.getWeatherForCity("Sydney")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ response -> }, { t -> })
+                override fun onFailure(errorResponse: ErrorResponse) {
+                    println(Gson().toJson(errorResponse))
+                }
+            }
         )
-    }
-
-
-    override fun onCleared() {
-        super.onCleared()
-        compositeDisposable?.dispose()
-    }
-
-    companion object {
-        private const val TAG = "MainViewModel"
     }
 }

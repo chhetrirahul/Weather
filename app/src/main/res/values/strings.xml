@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Weather</string>
+    <string name="error_unknown_host_exception">Cannot connect to the internet.</string>
+    <string name="error_unknown">Unknown error occurred.</string>
 </resources>
