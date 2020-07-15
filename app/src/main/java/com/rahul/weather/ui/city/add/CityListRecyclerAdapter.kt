@@ -2,6 +2,7 @@ package com.rahul.weather.ui.city.add
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.rahul.weather.databinding.ItemCityBinding
 import com.rahul.weather.db.entity.City
@@ -28,9 +29,11 @@ class CityListRecyclerAdapter(private val cityDeleteListener: CityDeleteListener
         holder.bindCity(city)
     }
 
-    fun setData(cityList: List<City>) {
-        this.cityList.clear()
-        this.cityList.addAll(cityList)
-        notifyDataSetChanged()
+    fun setData(cities: List<City>) {
+        val diffCallback = CityDiffCallback(cityList, cities)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        cityList.clear()
+        cityList.addAll(cities)
+        diffResult.dispatchUpdatesTo(this)
     }
 }
