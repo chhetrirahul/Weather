@@ -4,7 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.gson.Gson
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.rahul.weather.R
 import com.rahul.weather.databinding.ActivityAddCityBinding
 import com.rahul.weather.ui.base.BaseActivity
@@ -16,6 +17,8 @@ class AddCityActivity : BaseActivity<ActivityAddCityBinding>() {
     lateinit var viewModelProvider: ViewModelProvider.Factory
 
     lateinit var addCityViewModel: AddCityViewModel
+
+    lateinit var cityListRecyclerAdapter: CityListRecyclerAdapter
 
     override fun getLayoutId(): Int {
         return R.layout.activity_add_city
@@ -29,9 +32,24 @@ class AddCityActivity : BaseActivity<ActivityAddCityBinding>() {
         setToolbar(getString(R.string.txt_add_new_city))
         mBinding.viewModel = addCityViewModel
 
+        setUpRecycler()
+
         addCityViewModel.cityLiveData.observe(
             this,
-            Observer { cityList -> println(Gson().toJson(cityList)) })
+            Observer { cityList -> cityListRecyclerAdapter.setData(cityList) })
+    }
+
+    private fun setUpRecycler() {
+        val linearLayoutManager = LinearLayoutManager(this)
+        cityListRecyclerAdapter = CityListRecyclerAdapter()
+        mBinding.recycler.addItemDecoration(
+            DividerItemDecoration(
+                this,
+                DividerItemDecoration.VERTICAL
+            )
+        )
+        mBinding.recycler.layoutManager = linearLayoutManager
+        mBinding.recycler.adapter = cityListRecyclerAdapter
     }
 
     fun onAddClicked(view: View) {
