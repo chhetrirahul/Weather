@@ -43,13 +43,15 @@ class AddCityActivity : BaseActivity<ActivityAddCityBinding>(), CityDeleteListen
     private fun setUpRecycler() {
         val linearLayoutManager = LinearLayoutManager(this)
         cityListRecyclerAdapter = CityListRecyclerAdapter(this)
+        mBinding.recycler.layoutManager = linearLayoutManager
         mBinding.recycler.addItemDecoration(
             DividerItemDecoration(
                 this,
                 DividerItemDecoration.VERTICAL
             )
         )
-        mBinding.recycler.layoutManager = linearLayoutManager
+        mBinding.recycler.itemAnimator = null
+        // TODO: 7/15/2020 Handle the flickering issue later 
         mBinding.recycler.adapter = cityListRecyclerAdapter
     }
 
