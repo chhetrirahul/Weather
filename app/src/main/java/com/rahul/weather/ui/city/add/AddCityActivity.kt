@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rahul.weather.R
 import com.rahul.weather.databinding.ActivityAddCityBinding
+import com.rahul.weather.db.entity.City
 import com.rahul.weather.ui.base.BaseActivity
 import javax.inject.Inject
 
-class AddCityActivity : BaseActivity<ActivityAddCityBinding>() {
+class AddCityActivity : BaseActivity<ActivityAddCityBinding>(), CityDeleteListener {
 
     @Inject
     lateinit var viewModelProvider: ViewModelProvider.Factory
@@ -41,7 +42,7 @@ class AddCityActivity : BaseActivity<ActivityAddCityBinding>() {
 
     private fun setUpRecycler() {
         val linearLayoutManager = LinearLayoutManager(this)
-        cityListRecyclerAdapter = CityListRecyclerAdapter()
+        cityListRecyclerAdapter = CityListRecyclerAdapter(this)
         mBinding.recycler.addItemDecoration(
             DividerItemDecoration(
                 this,
@@ -56,7 +57,7 @@ class AddCityActivity : BaseActivity<ActivityAddCityBinding>() {
         addCityViewModel.saveCityToDb()
     }
 
-    companion object {
-        private const val TAG = "AddCityActivity"
+    override fun delete(city: City) {
+        addCityViewModel.deleteCity(city)
     }
 }

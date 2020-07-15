@@ -7,7 +7,7 @@ import com.rahul.weather.databinding.ItemCityBinding
 import com.rahul.weather.db.entity.City
 import java.util.*
 
-class CityListRecyclerAdapter :
+class CityListRecyclerAdapter(private val cityDeleteListener: CityDeleteListener) :
     RecyclerView.Adapter<CityViewHolder>() {
 
     var cityList = ArrayList<City>()
@@ -16,7 +16,7 @@ class CityListRecyclerAdapter :
         val layoutInflater = LayoutInflater.from(parent.context)
         val itemCityBinding =
             ItemCityBinding.inflate(layoutInflater, parent, false)
-        return CityViewHolder(itemCityBinding)
+        return CityViewHolder(itemCityBinding, cityDeleteListener)
     }
 
     override fun getItemCount(): Int {
@@ -29,6 +29,7 @@ class CityListRecyclerAdapter :
     }
 
     fun setData(cityList: List<City>) {
+        this.cityList.clear()
         this.cityList.addAll(cityList)
         notifyDataSetChanged()
     }

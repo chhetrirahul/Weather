@@ -31,4 +31,9 @@ class AddCityViewModel @Inject constructor(private val cityRepository: CityRepos
         Executors.newSingleThreadExecutor()
             .execute { cityRepository.insert(City(cityName.value!!)) }
     }
+
+    fun deleteCity(city: City) {
+        Executors.newSingleThreadExecutor()
+            .execute { cityRepository.delete(city) }
+    }
 }
