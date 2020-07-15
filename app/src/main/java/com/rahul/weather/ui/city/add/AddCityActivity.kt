@@ -2,7 +2,9 @@ package com.rahul.weather.ui.city.add
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.gson.Gson
 import com.rahul.weather.R
 import com.rahul.weather.databinding.ActivityAddCityBinding
 import com.rahul.weather.ui.base.BaseActivity
@@ -26,6 +28,10 @@ class AddCityActivity : BaseActivity<ActivityAddCityBinding>() {
         addCityViewModel.onActivityCreated(savedInstanceState)
         setToolbar(getString(R.string.txt_add_new_city))
         mBinding.viewModel = addCityViewModel
+
+        addCityViewModel.cityLiveData.observe(
+            this,
+            Observer { cityList -> println(Gson().toJson(cityList)) })
     }
 
     fun onAddClicked(view: View) {

@@ -1,6 +1,8 @@
 package com.rahul.weather.di
 
 import com.rahul.weather.WeatherApp
+import com.rahul.weather.db.AppDatabase
+import com.rahul.weather.db.di.DataBaseModule
 import com.rahul.weather.network.di.NetworkModule
 import com.rahul.weather.network.di.OpenWeatherApiModule
 import dagger.BindsInstance
@@ -16,7 +18,8 @@ import javax.inject.Singleton
         ActivityBuildersModule::class,
         ViewModelProviderFactory::class,
         NetworkModule::class,
-        OpenWeatherApiModule::class
+        OpenWeatherApiModule::class,
+        DataBaseModule::class
     ]
 )
 interface AppComponent : AndroidInjector<WeatherApp> {
@@ -28,4 +31,6 @@ interface AppComponent : AndroidInjector<WeatherApp> {
 
         fun build(): AppComponent
     }
+
+    fun appDatabase(): AppDatabase
 }
